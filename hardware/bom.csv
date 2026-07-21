@@ -1,0 +1,15 @@
+Reference,Quantity,Part,Value,Notes
+-,1,Dasduino CORE,ATmega328P,Arduino-compatible MCU board
+-,1,NEO-6M,-,GPS module
+-,1,DS3231,-,RTC module (battery-backed)
+-,1,MAX7219 matrix,8x32,LED matrix display
+-,1,Rotary encoder,-,Soldered (easyC)
+-,1,SHTC3,-,Temperature/humidity sensor (Soldered)
+-,1,GPS antenna,active,-
+-,1,SMA to u.FL adapter,-,uFL/IPX/IPEX pigtail
+-,1,Speaker,-,Alarm buzzer
+C1,1,Electrolytic capacitor,100uF,Bulk decoupling
+C2-C9,8,Electrolytic capacitor,10uF,Per-module / rail decoupling
+C10-C17,8,Capacitor,100nF,Per-module / rail decoupling
+-,1,Perfboard,-,-
+-,-,Miscellaneous,-,Enclosure, wiring, headers, hardware
