@@ -66,7 +66,7 @@ Datasheets: [DS3231](docs/datasheets/DS3231_datasheet.pdf) ·
 
 ### Schematic
 
-<img alt="schematic" src="https://github.com/user-attachments/assets/3614a174-8044-440d-be30-566845f54209" />
+![Schematic](docs/images/schematic.png)
 
 ## Firmware
 
