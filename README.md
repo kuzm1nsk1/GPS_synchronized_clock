@@ -45,7 +45,7 @@ list: [hardware/bom.csv](hardware/bom.csv).
 | 1 | SHTC3 (Soldered) | Temperature sensor |
 | 1 | Active GPS antenna + SMA→u.FL | — |
 | 1 | Speaker | Alarm |
-| 1 | 100 µF + 8× 10 µF + 8× 100 nF | Decoupling |
+| 1 | 100 µF + 4× 10 µF + 4× 100 nF | Decoupling |
 
 Datasheets: [DS3231](docs/datasheets/DS3231_datasheet.pdf) ·
 [NEO-6M](docs/datasheets/NEO-6M_datasheet.pdf) ·
