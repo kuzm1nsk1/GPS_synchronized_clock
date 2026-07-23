@@ -128,10 +128,6 @@ Fonts were made with the [MD Parola Font Editor](https://pjrp.github.io/MDParola
 which supports variable-width characters. Background reading:
 [Parola fonts A to Z](https://arduinoplusplus.wordpress.com/2016/11/08/parola-fonts-a-to-z-defining-fonts/).
 
-## Report
-
-Full project write-up: [docs/report/3472_Mihael_Kuzminski.pdf](docs/report/3472_Mihael_Kuzminski.pdf)
-
 ## License
 
 - **Firmware:** MIT — see [LICENSE](LICENSE)
