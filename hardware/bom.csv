@@ -12,4 +12,4 @@ C5,1,Electrolytic capacitor,10uF,Bulk decoupling
 C1 C3 C6 C9,4,Electrolytic capacitor,10uF,Per-module / rail decoupling
 C2 C4 C7 C8,4,Capacitor,100nF,Per-module / rail decoupling
 -,1,Perfboard,-,-
--,-,Miscellaneous,-,Enclosure, wiring, headers, hardware
+-,-,Miscellaneous,-,Enclosure wiring headers hardware
