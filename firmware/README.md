@@ -1,52 +1,31 @@
 # Firmware
 
-Arduino sketch for the GPS synchronized clock, plus a custom `MAX7219` library
-for driving the 8×32 matrix.
+PlatformIO firmware for the Dasduino CORE (ATmega328P) GPS synchronized clock.
+The GPS receiver supplies UTC over serial and a 1 Hz PPS edge; the DS3231 RTC
+keeps the display running when GPS time is unavailable. The 8×32 MAX7219 matrix
+cycles through Croatia local time, temperature and relative humidity.
 
-```
-gps_clock/
-├── gps_clock.cpp   main program (commented; PlatformIO-ready)
-├── MAX7219.h       custom matrix driver (header)
-└── MAX7219.cpp     custom matrix driver (implementation)
-```
+## Hardware connections
 
-The main program is a `.cpp` (not `.ino`) so it builds under PlatformIO without
-relying on the Arduino IDE's automatic prototype generation — it carries its own
-forward declarations. To open it in the Arduino IDE instead, copy it to
-`gps_clock.ino`; the `#include <Arduino.h>` line is harmless there.
+- D2: DS3231 1 Hz square wave
+- D3: GPS PPS
+- D6: GPS TX to MCU RX
+- D7: onboard user button (toggles serial diagnostics)
+- D8: onboard NeoPixel status LED
+- D9: buzzer (brief tone for debug telemetry)
+- D10: MAX7219 LOAD/CS; D11/D13: SPI DIN/CLK
+- A4/A5: I2C SDA/SCL for DS3231 and SHTC3
 
-## Required libraries
+## Build and upload
 
-Bundled with the Arduino AVR core (no install needed): **Wire**, **EEPROM**,
-**SoftwareSerial**.
-
-Install these:
-
-- **RTClib** (Adafruit) — `adafruit/RTClib`
-- **TinyGPSPlus** (Mikal Hart) — `mikalhart/TinyGPSPlus`
-- **Rotary encoder (Soldered, easyC)** — Soldered's Arduino library
-- **SHTC3 (Soldered)** — Soldered's Arduino library
-
-The `MAX7219` library is included here in `gps_clock/` — nothing to install.
-
-## Build & upload — Arduino IDE
-
-1. Install the libraries above via Library Manager (the Soldered ones pull in
-   their easyC dependency too).
-2. Copy `gps_clock/gps_clock.cpp` to `gps_clock/gps_clock.ino` and open it.
-3. Select **Arduino Nano**, processor **ATmega328P (Old Bootloader)**, correct port.
-4. Upload.
-
-## Build & upload — PlatformIO
-
-`platformio.ini` targets the Nano (old bootloader) profile and pulls in all
-dependencies automatically: RTClib and TinyGPSPlus from the registry, and the
-Soldered rotary-encoder and SHTC3 libraries from their GitHub repositories. If a
-build reports a missing easyC/generic header, add Soldered's generic library as
-noted in `platformio.ini`.
+Install [PlatformIO](https://platformio.org/) and run these commands from this
+directory:
 
 ```sh
-cd firmware
-pio run                 # build
-pio run -t upload       # flash
+pio run
+pio run -t upload
 ```
+
+The project uses the Arduino AVR platform and declares its libraries in
+`platformio.ini`. Select the connected upload port in PlatformIO if automatic
+port detection does not find it.

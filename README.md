@@ -4,23 +4,19 @@
 [![Hardware: CERN-OHL-W](https://img.shields.io/badge/hardware-CERN--OHL--W--v2-blue.svg)](LICENSE-hardware)
 [![Platform: ATmega328P](https://img.shields.io/badge/platform-ATmega328P-orange.svg)](#hardware)
 
-A highly accurate digital clock that disciplines its time to GPS. Measured
-deviation is **under 100 ms** relative to internet atomic-clock references, with
-a DS3231 RTC as backup when GPS is weak. Time and temperature are shown on an
-8×32 LED matrix, with alarm, timer and stopwatch functions navigated by a rotary
-encoder.
+A GPS-disciplined digital clock for the Dasduino CORE (ATmega328P). A GPS PPS
+signal keeps time, with a DS3231 RTC as backup. The 8×32 LED matrix shows
+Croatia local time, temperature and humidity.
 
 ![Front side](docs/images/front_side.jpg)
 
 ## Features
 
 - 8×32 LED matrix display, brightness adjustable in 15 steps
-- Two selectable fonts
-- Rotary-encoder menu navigation
-- Time & temperature display, alarm, timer, stopwatch
-- Speaker for the alarm
-- RTC backup when GPS signal is weak
-- Settings retained across power loss (EEPROM)
+- Croatia local time with automatic CET/CEST conversion
+- GPS PPS synchronization with DS3231 RTC fallback
+- Temperature and relative humidity pages from the SHTC3 sensor
+- Onboard red LED indicates PPS activity; the user button toggles serial diagnostics
 
 ## Repository layout
 
@@ -70,14 +66,11 @@ Datasheets: [DS3231](docs/datasheets/DS3231_datasheet.pdf) ·
 
 ## Firmware
 
-Wire, EEPROM and SoftwareSerial ship with the Arduino AVR core. Additionally
-required: **RTclib** (Adafruit), **TinyGPSPlus** (Mikal Hart), and Soldered's
-**rotary encoder** and **SHTC3** libraries. The **MAX7219** driver is a custom
-library included in `firmware/gps_clock/`.
-
-Build and upload instructions (Arduino IDE and PlatformIO): see
-[firmware/README.md](firmware/README.md). For upload, use the **Arduino Nano /
-ATmega328P (Old Bootloader)** profile.
+Wire and SoftwareSerial ship with the Arduino AVR core. The firmware also uses
+RTClib, TinyGPSPlus, MD_MAX72XX, Adafruit NeoPixel and Adafruit SHTC3. Build and
+upload instructions: see [firmware/README.md](firmware/README.md). The
+PlatformIO target uses the Arduino Nano / ATmega328P profile for the Dasduino
+CORE.
 
 ## Usage
 
@@ -89,13 +82,8 @@ Inside:
 
 <img alt="inside" src="docs/images/internals.jpeg" width="100%" />
 
-- Rotate the encoder to move between time display, alarm, timer, stopwatch and settings
-- Press to confirm the selected option or setting
-- In alarm / timer / stopwatch: a short press cycles the digit group being
-  adjusted (hours, minutes, seconds); a long press confirms
-- In settings: short press enters, long press confirms, double press goes back
-- Settings include font (HH:MM or HH:MM:SS), brightness (15 steps), all-alarms
-  off, daylight-saving on/off, and reset-all
+- The display cycles through Croatia local time, temperature and relative humidity.
+- Press the onboard button to toggle serial diagnostics; diagnostic sends briefly sound the buzzer.
 
 ## Measurements
 
